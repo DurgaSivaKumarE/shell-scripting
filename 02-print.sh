@@ -8,5 +8,5 @@ echo Hello World
 
  echo -e "\e[1;36m\n\t\tTEXT IN CYAN"
  echo durga
- echo -e "\e[1;35mdurga, but no colour\e[om"
+ echo -e "\e[1;35mdurga, but no colour\e[0m"
  echo no colour
