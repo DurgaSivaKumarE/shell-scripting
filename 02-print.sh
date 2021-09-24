@@ -7,3 +7,4 @@ echo Hello World
  echo -e "\e[33m\nTEXT IN YELLOW"
 
  echo -e "\e[1;36m\n\t\tTEXT IN CYAN"
+ echo durga
