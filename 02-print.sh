@@ -6,4 +6,4 @@ echo Hello World
  echo -e "\e[31mTEXT IN RED"
  echo -e "\e[33m\nTEXT IN YELLOW"
 
- echo -e "\e[1;36mTEXT IN CYAN"
+ echo -e "\e[1;36m\n\t\tTEXT IN CYAN"
