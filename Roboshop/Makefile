@@ -1,34 +1,34 @@
 help:      ## Show this help.
 		@grep -h "##" $(MAKEFILE_LIST) 
 
-catalogue: ## Installing catalogue
+catalogue: ## Install catalogue
 		@bash components/catalogue.sh
 
-mongodb:	## Installing MongoDB
+mongodb:	## Install MongoDB
 		@bash components/mongodb.sh
 
-redis:		## Installing Redis
+redis:		## Install Redis
 		@bash components/redis.sh
 
-user:		## Installing user
+user:		## Install user
 		@bash components/user.sh
 
-cart:		## Installing cart
+cart:		## Install cart
 		@bash components/cart.sh
 
-mysql:		## Installing MySQL
+mysql:		## Install MySQL
 		@bash components/mysql.sh
 
-shipping:	## Installing shipping
+shipping:	## Install shipping
 		@bash components/shipping.sh
 
-rabbitmq:	## Installing rabbitmq
+rabbitmq:	## Install rabbitmq
 		@bash components/rabbitmq.sh
 
-payment:	## Installing Payment
+payment:	## Install Payment
 		@bash components/payment.sh
 
-frontend:	## Installing Frontend
+frontend:	## Install Frontend
 		@bash components/frontend.sh
 										
 				
