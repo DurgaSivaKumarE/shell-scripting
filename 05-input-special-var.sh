@@ -1,4 +1,4 @@
 #1/bin/bash
 
 echo Script Name = $0
-echo $1
+echo First Argument = $1
