@@ -18,5 +18,6 @@ ADD=$((1+3))
 echo ADD = $ADD
 
 # read write variable
+
 a1=100
 a1=200
