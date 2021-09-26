@@ -7,16 +7,16 @@ catalogue: ## Installing catalogue
 mongodb:	## Installing MongoDB
 		@bash components/mongodb.sh
 
-redis:	## Installing Redis
+redis:		## Installing Redis
 		@bash components/redis.sh
 
-user:	## Installing user
+user:		## Installing user
 		@bash components/user.sh
 
-cart:	## Installing cart
+cart:		## Installing cart
 		@bash components/cart.sh
 
-mysql:	## Installing MySQL
+mysql:		## Installing MySQL
 		@bash components/mysql.sh
 
 shipping:	## Installing shipping
