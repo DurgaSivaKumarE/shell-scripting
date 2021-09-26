@@ -1,7 +1,7 @@
 help:      ## Show this help.
 		@grep -h "##" $(MAKEFILE_LIST) 
 
-catalogue: ## Install catalogue
+catalogue: 		## Install catalogue
 		@bash components/catalogue.sh
 
 mongodb:	## Install MongoDB
