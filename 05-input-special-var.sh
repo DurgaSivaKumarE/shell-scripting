@@ -1,3 +1,4 @@
 #1/bin/bash
 
-echo $0
+echo Script Name=$0
+echo $1
