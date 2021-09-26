@@ -2,4 +2,4 @@
 
 read -p "Enter your name: " name
 
-echo "Your name = $(name)"
+echo "Your name = ${name}"
