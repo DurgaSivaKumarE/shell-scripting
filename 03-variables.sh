@@ -12,5 +12,8 @@ echo Value of b = ${b}
 #DATE="2021-09-26"
 DATE=$(date +%F)
 
-echo welcome today date is $DATE
+echo welcome today date is $
+
+ADD=$((1+3))
+echo ADD = $ADD
 
