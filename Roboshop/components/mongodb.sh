@@ -1,4 +1,4 @@
-echo "Installing MongoDB"
+echo "Setting UP MongoDB Repo"
 
 echo '[mongodb-org-4.2]
 name=MongoDB Repository
@@ -7,22 +7,18 @@ gpgcheck=1
 enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc' >/etc/yum.repos.d/mongodb.repo
 
+echo "Installing MongoDB"
+
  yum install -y mongodb-org >/tmp/log
+ echo "Configuring MongoDB"
 
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 
+echo "starting MongoDB"
  systemctl enable mongod
- systemctl start mongod
-
- 
-#Update Liste IP address from 127.0.0.1 to 0.0.0.0 in config file
-#Config file: /etc/mongod.conf
-
-#then restart the service
-
  systemctl restart mongod
 
-
+echo "Downloading MongoDB Schema"
  curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
 
  cd /tmp
