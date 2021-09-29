@@ -9,7 +9,11 @@ Status_Check() {
 fi  
 }
 
-echo "Setting UP MongoDB Repo"
+Print() {
+   echo -n -e "$1"
+} 
+
+Print "Setting UP MongoDB Repo"
 
 echo '[mongodb-org-4.2]
 name=MongoDB Repository
@@ -19,7 +23,7 @@ enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc' >/etc/yum.repos.d/mongodb.repo
 Status_Check $?      
 
-echo "Installing MongoDB"
+Print "Installing MongoDB"
 
  yum install -y mongodb-org &>>/tmp/log
 
@@ -29,17 +33,14 @@ echo "Installing MongoDB"
     echo -e "\e[31mFAILURE\e[0m" 
     exit 2
 fi
- echo "Configuring MongoDB"
+ Print "Configuring MongoDB"
 
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 if [ $? -eq 0 ]; then 
     echo -e "\e[32mSUCCESS\e[0m"
  else
     echo -e "\e[31mFAILURE\e[0m" 
-    exit 2
-fi
-
-echo "starting MongoDB"
+    Print "starting MongoDB"
  systemctl enable mongod
  systemctl restart mongod
 
@@ -50,7 +51,7 @@ if [ $? -eq 0 ]; then
     exit 2
 fi
 
-echo "Downloading MongoDB Schema"
+Print "Downloading MongoDB Schema"
  curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
 
 if [ $? -eq 0 ]; then 
@@ -61,7 +62,7 @@ if [ $? -eq 0 ]; then
 fi
 
  cd /tmp
- echo "Extracting Schema Archive"
+ Print "Extracting Schema Archive"
  unzip mongodb.zip &>>/tmp/log
  if [ $? -eq 0 ]; then 
     echo -e "\e[32mSUCCESS\e[0m"
