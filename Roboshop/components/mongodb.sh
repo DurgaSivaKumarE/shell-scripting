@@ -1,17 +1,6 @@
 #1/bin/bash
 
-Status_Check() {
-   if [ $1 -eq 0 ]; then 
-    echo -e "\e[32mSUCCESS\e[0m"
- else
-    echo -e "\e[31mFAILURE\e[0m" 
-    exit 2
-fi  
-}
-
-Print() {
-   echo -n -e "$1 \t-"
-} 
+source components/common.sh
 
 Print "Setting UP MongoDB Repo"
 
@@ -74,7 +63,7 @@ fi
 fi
 
  cd mongodb-main
- echo "Loading Schema"
+ echo "Loading Schema\t"
  mongo < catalogue.js &>>/tmp/log
  mongo < users.js &>>/tmp/log
 if [ $? -eq 0 ]; then 
