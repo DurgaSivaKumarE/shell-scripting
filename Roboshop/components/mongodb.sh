@@ -1,3 +1,14 @@
+#1/bin/bash
+
+Status_Check() {
+   if [ $1 -eq 0 ]; then 
+    echo -e "\e[32mSUCCESS\e[0m"
+ else
+    echo -e "\e[31mFAILURE\e[0m" 
+    exit 2
+fi  
+}
+
 echo "Setting UP MongoDB Repo"
 
 echo '[mongodb-org-4.2]
@@ -6,13 +17,7 @@ baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
 gpgcheck=1
 enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc' >/etc/yum.repos.d/mongodb.repo
-
-if [ $? -eq 0 ]; then 
-    echo -e "\e[32mSUCCESS\e[0m"
- else
-    echo -e "\e[31mFAILURE\e[0m" 
-    exit 2
-fi       
+Status_Check $?      
 
 echo "Installing MongoDB"
 
