@@ -63,7 +63,7 @@ fi
 fi
 
  cd mongodb-main
- echo "Loading Schema\t"
+ Print "Loading Schema\t"
  mongo < catalogue.js &>>/tmp/log
  mongo < users.js &>>/tmp/log
 if [ $? -eq 0 ]; then 
