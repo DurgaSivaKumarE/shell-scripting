@@ -1,7 +1,7 @@
 #1/bin/bash 
  
 
-LID= "lt-06a1704feb566a4ed"
+LID="lt-06a1704feb566a4ed"
 LVER=2
 
 
