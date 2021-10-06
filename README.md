@@ -1,4 +1,4 @@
-#1/bin/bash
+#!/bin/bash
 # shell-scripting
 <<<<<<< HEAD
 # new line in it

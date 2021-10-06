@@ -1,4 +1,4 @@
-#1/bin/bash
+#!/bin/bash
 
 echo Hello World
  echo -e "line1\nLine2"

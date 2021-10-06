@@ -1,4 +1,4 @@
-#1/bin/bash
+#!/bin/bash
 
 a=10
 b=xyz
