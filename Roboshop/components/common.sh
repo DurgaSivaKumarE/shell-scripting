@@ -38,7 +38,22 @@ DOWNLOAD() {
    Print "Downloading ${COMPONENT} Content"
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>$LOG
 Status_Check $?
+Print "Extracting ${COMPONENT}"
+cd /home/roboshop
+rm -rf ${COMPONENT} && unzip -o /tmp/${COMPONENT}.zip &>>$LOG &&  mv ${COMPONENT}-main ${COMPONENT}
+Status_Check $?
 }
+
+SystemD_Setup() {
+
+Print "Update SystemD service"
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service
+Status_Check $?
+Print "Setup systemd service"
+mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service && systemctl daemon-reload && systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
+Status_Check $?
+}
+
 
 NODEJS() {
    Print "Installing NodeJS"
@@ -48,26 +63,12 @@ NODEJS() {
 ADD_APP_USER
 DOWNLOAD
 
-
-
-
-Print "Extracting Catalogue"
-cd /home/roboshop
-rm -rf catalogue && unzip -o /tmp/catalogue.zip &>>$LOG &&  mv catalogue-main catalogue
-Status_Check $? 
-
 Print "Downloading NodeJS Dependencies"
-cd /home/roboshop/catalogue
+cd /home/roboshop/${COMPONENT}
 npm install --unsafe-perm &>>$LOG
 Status_Check $?
 
 chown roboshop:roboshop -R /home/roboshop
+SystemD_Setup
 
-Print "Update SystemD service"
-sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue/systemd.service
-Status_Check $?
-
-Print "Setuo systemd service"
-mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service && systemctl daemon-reload && systemctl restart catalogue &>>$LOG && systemctl enable catalogue &>>$LOG
-Status_Check $?
 }
