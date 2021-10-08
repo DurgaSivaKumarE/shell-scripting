@@ -18,7 +18,7 @@ Print "Start MySQL Service"
 systemctl enable mysqld &>>$LOG && systemctl start mysqld &>>$LOG
 Status_Check $?
 
-DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
+DEFAULT_PASSWORD=${grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}'}
 
 Print "Reset Default Password"
 echo 'show databases' | mysql -uroot -pRoboShop@1 &>>$LOG
