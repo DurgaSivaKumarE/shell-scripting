@@ -18,15 +18,15 @@ Print "Start MySQL Service"
 systemctl enable mysqld &>>$LOG && systemctl start mysqld &>>$LOG
 Status_Check $?
 
-DEFAULT_PASSWORD=${grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}'}
+DEFAULT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}')
 
-Print "Reset Default Password"
-echo 'show databases' | mysql -uroot -pRoboShop@1 &>>$LOG
-if [ $? -eq 0 ]; then 
-    echo "Root Password is already set" &>>$LOG
-else    
-    echo "ALTER USER 'rootf'@'localhost' IDENTIFIED NY 'RoboShop@1';" >/tmp/reset.sql 
+#Print "Reset Default Password"
+#echo 'show databases' | mysql -uroot -pRoboShop@1 &>>$LOG
+#if [ $? -eq 0 ]; then 
+ #   echo "Root Password is already set" &>>$LOG
+#else    
+    echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" >/tmp/reset.sql 
     mysql --connect-expired-password -u root -p"${DEFAULT_PASSWORD}" </tmp/reset.sql &>>$LOG
- fi   
-Status_Check $?
+ #fi   
+#Status_Check $?
 exit
