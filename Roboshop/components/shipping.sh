@@ -2,6 +2,6 @@
 
 source components/common.sh
 
-COMPONENT=catalogue
+COMPONENT=shipping
 ## JAVA is a function from common.sh
 JAVA
