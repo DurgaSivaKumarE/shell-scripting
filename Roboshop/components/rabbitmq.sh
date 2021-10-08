@@ -19,5 +19,5 @@ Status_Check $?
 
 
 Print "Create application user"
-rabbitmqctl add_user roboshop roboshop123 &>>$LOG && rabbitmqctl set_user_tags roboshop administrator && rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$LOG 
+rabbitmqctl add_user roboshop roboshop123 &>>$LOG && rabbitmqctl set_user_tags roboshop administrator  &>>$LOG  && rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$LOG 
 Status_Check $?
