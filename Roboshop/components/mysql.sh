@@ -31,8 +31,13 @@ fi
 Status_Check $?
 
 Print "uninstall password validate plugin"
-echo "uninstall plugin validate_password" >/tmp/pass.sql
-mysql -u root -p"RoboShop@1" </tmp/pass.sql &>>$LOG
+echo "shoe plugins; " | mysql -u root -p"RoboShop@1" | grep -i validate_password &>>$LOG
+if [ $? -eq 0 ]; then
+    echo "uninstall plugin validate_password" >/tmp/pass.sql
+    mysql -u root -p"RoboShop@1" </tmp/pass.sql &>>$LOG
+else    
+    echo "password plugin is already uninstalled" &>>$LOG
+fi        
 Status_Check $?
 
 Print "Download the Schema"
