@@ -29,7 +29,6 @@ else
     mysql --connect-expired-password -u root -p"${DEFAULT_PASSWORD}" </tmp/reset.sql &>>$LOG
 fi   
 Status_Check $?
-exit
 
 Print "uninstall password validate plugin"
 echo "uninstall plugin validate_password" >/tmp/pass.sql
