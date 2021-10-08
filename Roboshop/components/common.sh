@@ -73,3 +73,19 @@ chown roboshop:roboshop -R /home/roboshop
 SystemD_Setup
 
 }
+
+JAVA() {
+   Print "installing Maven\t"
+   yum install maven -y &>>$LOG
+   Status_Check $?
+   ADD_APP_USER
+   DOWNLOAD
+   cd /home/roboshop/shipping
+   Print "Make Shipping Package\t"
+   mvn clean package &>>$LOG
+   Status_Check $?
+   Print "Rename Shipping Package"
+   mv target/shipping-1.0.jar shipping.jar &>>$LOG
+   Status_Check $?
+   chown roboshop:roboshop -R /home/roboshop
+} 
