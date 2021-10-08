@@ -18,14 +18,15 @@ Print "Start MySQL Service"
 systemctl enable mysqld &>>$LOG && systemctl start mysqld &>>$LOG
 Status_Check $?
 
+DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
+
+Print "Reset Default Password"
+echo 'show databases' | mysql -uroot -pRoboShop@1 &>>$LOG
+if [ $? -eq 0 ]; then 
+    echo "Root Password is already set" &>>$LOG
+else    
+    echo "ALTER USER 'rootf'@'localhost' IDENTIFIED NY 'RoboShop@1';" >/tmp/reset.sql 
+    mysql --connect-expired-password -u root -p"${DEFAULT_PASSWORD}" </tmp/reset.sql &>>$LOG
+ fi   
+Status_Check $?
 exit
-
-Now a default root password will be generated and given in the log file.
-# grep temp /var/log/mysqld.log
-
-Next, We need to change the default root password in order to start using the database service.
-# mysql_secure_installation
-
-You can check the new password working or not using the following command.
-
-# mysql -u root -p
