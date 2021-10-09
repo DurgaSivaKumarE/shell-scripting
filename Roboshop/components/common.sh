@@ -102,9 +102,15 @@ PYTHON() {
    DOWNLOAD
 
    cd /home/roboshop/payment 
-   Print "Install dependencies"
+   Print "Install dependencies\t"
    pip3 install -r requirements.txt &>>$LOG
    Status_Check $?
-   
+
+   USERID=$(id -u roboshop)
+   GROUPID=$(if -g roboshop)
+
+   Print "Update Roboshop User in Config"
+   sed -i -e "/uid/ c uid=${USERID}" -e "/gid/ c gid=${GROUPID}" /home/roboshop/payment/payment.ini &>>$LOG
+   Status_Check $?
 
 }
