@@ -107,7 +107,7 @@ PYTHON() {
    Status_Check $?
 
    USERID=$(id -u roboshop)
-   GROUPID=$(if -g roboshop)
+   GROUPID=$(id -g roboshop)
 
    Print "Update Roboshop User in Config"
    sed -i -e "/uid/ c uid=${USERID}" -e "/gid/ c gid=${GROUPID}" /home/roboshop/payment/payment.ini &>>$LOG
