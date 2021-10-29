@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LID="lt-06a1704feb566a4ed"
+LID="lt-032be04ed2010f756"
 LVER=2
 INSTANCE_NAME=$1
 
